@@ -1,0 +1,13 @@
+.env
+.git
+.gitignore
+.github
+__pycache__
+*.py[cod]
+*.egg-info
+.venv
+venv
+env
+tests
+sessions.json
+*.md

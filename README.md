@@ -73,6 +73,43 @@ asistente-citas/
     └── test_core.py
 ```
 
+## Docker
+
+> La app usa una interfaz gráfica (Tkinter), por lo que Docker requiere un servidor X11 en el host.
+
+### Linux
+
+```bash
+xhost +local:docker
+GEMINI_API_KEY=tu_api_key docker compose up --build
+```
+
+### Windows (con VcXsrv)
+
+1. Instala [VcXsrv](https://sourceforge.net/projects/vcxsrv/) y ejecútalo con **"Disable access control"** marcado
+2. Luego:
+
+```powershell
+$env:GEMINI_API_KEY = "tu_api_key"
+$env:DISPLAY = "host.docker.internal:0"
+docker compose up --build
+```
+
+### macOS (con XQuartz)
+
+```bash
+xhost +localhost
+DISPLAY=host.docker.internal:0 GEMINI_API_KEY=tu_api_key docker compose up --build
+```
+
+### Solo build (sin levantar)
+
+```bash
+docker build -t asistente-citas .
+```
+
+---
+
 ## CI
 
 El pipeline de GitHub Actions corre automáticamente en cada push a `main` y en pull requests.
